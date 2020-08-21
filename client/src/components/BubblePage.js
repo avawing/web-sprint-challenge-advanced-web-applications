@@ -17,7 +17,7 @@ const getColors = () => {
 
 useEffect(()=>{
   getColors()
-},[])
+},[]);
 
   return (
     <>
