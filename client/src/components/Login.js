@@ -16,13 +16,16 @@ const Login = () => {
   const changeHandler = (e) => {
     setUser({...user, [e.target.name]:e.target.value})
   };
+  console.log(user)
 
   const login = (e) => {
     e.preventDefault();
     axios
     .post('http://localhost:5000/api/login', user)
       .then(res => {
+        console.log(res.data.token)
         localStorage.setItem('token', res.data.token);
+        console.log('I have posted!')
         history.push('/BubblePage');
       })
       .catch(e=>{console.log(`NO SOUP FOR YOU ${e}`)})
@@ -31,10 +34,10 @@ const Login = () => {
   return (
     <div style = {{display: 'flex', flexDirection: 'row', justifyContent:'center', alignContent:'center', alignItems: 'center'}}>
       <h1>Welcome to the Bubble App!</h1>
-      <Form onsubmit = {login}>
+      <Form onSubmit = {login}>
       <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
         <Label for="exampleEmail" className="mr-sm-2">Email</Label>
-        <Input onChange = {changeHandler} type="email" name="username" id="exampleEmail" value = {user.username} placeholder="username" />
+        <Input onChange = {changeHandler} type="text" name="username" id="exampleEmail" value = {user.username} placeholder="username" />
       </FormGroup>
       <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
         <Label for="examplePassword" className="mr-sm-2">Password</Label>
