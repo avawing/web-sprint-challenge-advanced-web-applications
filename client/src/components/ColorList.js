@@ -6,7 +6,7 @@ const initialColor = {
   code: { hex: "" }
 };
 
-const ColorList = ({ colors, updateColors }) => {
+const ColorList = ({ colors, updateColors, getColors }) => {
 
   console.log(colors);
   const [editing, setEditing] = useState(false);
@@ -24,9 +24,7 @@ const ColorList = ({ colors, updateColors }) => {
     // where is is saved right now?
     axiosWithAuth()
     .put(`http://localhost:5000/api/colors/${colorToEdit.id}`, colorToEdit)
-    .then(res => updateColors(
-      colors.filter(color => color.id !== res.id)
-    ))
+    .then(res => getColors())
     .catch(e => console.log(`THE COLORS, DUKE! THE COLORS! ${e}`))
   };
 
@@ -34,7 +32,7 @@ const ColorList = ({ colors, updateColors }) => {
     // make a delete request to delete this color
     axiosWithAuth()
     .delete(`http://localhost:5000/api/colors/${color.id}`)
-    .then(res => console.log('suceess'))
+    .then(res => getColors)
     .catch(e=> `DENIED: ${e}`)
   };
 
