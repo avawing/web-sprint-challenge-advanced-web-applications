@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import BubblePage from "./components/BubblePage";
 import Login from "./components/Login";
 import "./styles.scss";
@@ -12,7 +12,7 @@ function App() {
         localStorage.getItem("token") ? (
           <Component {...props} />
         ) : (
-          <Redirect to="/login" />
+          <Redirect to="/" />
         )
       }
     />
