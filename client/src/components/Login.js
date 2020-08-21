@@ -23,8 +23,8 @@ const Login = () => {
     axios
     .post('http://localhost:5000/api/login', user)
       .then(res => {
-        console.log(res.data.token)
-        localStorage.setItem('token', res.data.token);
+        console.log(res.data.payload)
+        localStorage.setItem('token', res.data.payload);
         console.log('I have posted!')
         history.push('/BubblePage');
       })
